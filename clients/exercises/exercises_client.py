@@ -8,7 +8,7 @@ class GetExerciseQueryDict(TypedDict):
     """
     courseId: str
 
-class CreateExerciseQueryDict(TypedDict):
+class CreateExerciseResponseDict(TypedDict):
     """
     Описание структуры запроса на создание урока
     """
@@ -51,7 +51,7 @@ class ExercisesClient(APIClient):
         """
         return self.get(f'/api/v1/exercises/{exercise_id}')
 
-    def create_exercise_api(self, request: CreateExerciseQueryDict) -> Response:
+    def create_exercise_api(self, request: CreateExerciseResponseDict) -> Response:
         """
         Метод создания урока
         :param request: Словарь с title, courseId, maxScore, minScore,
