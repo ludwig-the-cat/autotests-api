@@ -2,7 +2,6 @@ from httpx import Response
 from clients.api_client import APIClient
 from typing import TypedDict
 
-
 class CreateFileRequestDict(TypedDict):
     """
     Описание структуры запроса на создание файла.
@@ -10,7 +9,6 @@ class CreateFileRequestDict(TypedDict):
     filename: str
     directory: str
     upload_file: str
-
 
 class FilesClient(APIClient):
     """
