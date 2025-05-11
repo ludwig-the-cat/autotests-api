@@ -1,6 +1,29 @@
 from clients.api_client import APIClient
 from httpx import Response
 from typing import TypedDict
+from clients.private_http_builder import get_private_http_client, AuthenticationUserDict
+
+
+# Добавили описание структуры курса
+class Exercise(TypedDict):
+    """
+    Описание структуры курса
+    """
+    id: str
+    title: str
+    courseId: str
+    maxScore: int
+    minScore: int
+    orderIndex: int
+    description: str
+    estimatedTime: str
+
+# Добавили описание структуры запроса на создание курса
+class CreateExerciseResponseDict(TypedDict):
+    """
+    Описание структуры ответа создания урока
+    """
+    exercise: list[Exercise]
 
 class GetExerciseQueryDict(TypedDict):
     """
@@ -8,7 +31,7 @@ class GetExerciseQueryDict(TypedDict):
     """
     courseId: str
 
-class CreateExerciseResponseDict(TypedDict):
+class CreateExerciseRequestDict(TypedDict):
     """
     Описание структуры запроса на создание урока
     """
@@ -51,7 +74,7 @@ class ExercisesClient(APIClient):
         """
         return self.get(f'/api/v1/exercises/{exercise_id}')
 
-    def create_exercise_api(self, request: CreateExerciseResponseDict) -> Response:
+    def create_exercise_api(self, request: CreateExerciseRequestDict) -> Response:
         """
         Метод создания урока
         :param request: Словарь с title, courseId, maxScore, minScore,
@@ -77,3 +100,15 @@ class ExercisesClient(APIClient):
         :return: Ответ от сервера в виде объекта httpx.Response
         """
         return self.delete(f'/api/v1/exercises/{exercise_id}')
+
+    # Добавили новый метод
+    def create_exercise(self, request: CreateExerciseRequestDict) -> CreateExerciseResponseDict:
+        response = self.create_exercise_api(request)
+        return response.json()
+
+def get_exercises_client(user: AuthenticationUserDict) -> ExercisesClient:
+    """
+    Функция создаёт экземпляр ExercisesClient с уже настроенным HTTP-клиентом
+    :return: Готовый к использованию ExercisesClient
+    """
+    return ExercisesClient(client=get_private_http_client(user))
