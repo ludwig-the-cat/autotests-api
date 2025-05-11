@@ -18,14 +18,14 @@ class PrivateUsersClient(APIClient):
     """
     Клиент для работы с /api/v1/users
     """
-    def get_get_user_me_api(self) -> Response:
+    def get_user_me_api(self) -> Response:
         """
         Метод получения текущего авторизированного пользователя
         :return: Ответ сервера в виде объекта httpx.Response
         """
         return self.get("/api/v1/users/me")
 
-    def get_get_user_api(self, user_id: str) -> Response:
+    def get_user_api(self, user_id: str) -> Response:
         """
         Метод получения пользователя по идентификатору
         :param user_id: Идентификатор пользователя

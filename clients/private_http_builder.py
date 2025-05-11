@@ -23,7 +23,7 @@ def get_private_http_client(user: AuthenticationUserDict) -> Client:
     login_response = authentication_client.login(login_request)
     return Client(
         timeout=100,
-        base_url='http://loaclhost:8000',
+        base_url='http://localhost:8000',
         # Добавляем заголовок авторизации
         headers= {"Authorization": f"Bearer {login_response.get('token').get('accessToken')}"}
     )
