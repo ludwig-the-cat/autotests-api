@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, HttpUrl, EmailStr
 
 # Добавили описание структуры пользователя
-class User(BaseModel):
+class UserSchema(BaseModel):
     """
     Описание структуры пользователя
     """
@@ -11,7 +11,7 @@ class User(BaseModel):
     first_name: str = Field(alias="firstName")
     middle_name: str = Field(alias="middleName")
 
-class CreateUserRequestDict(BaseModel):
+class CreateUserRequestDictSchema(BaseModel):
     """
     Описание структуры запроса для создания запроса
     """
@@ -21,8 +21,8 @@ class CreateUserRequestDict(BaseModel):
     first_name: str = Field(alias="firstName")
     middle_name: str = Field(alias="middleName")
 
-class CreateUserResponseDict(BaseModel):
+class CreateUserResponseDictSchema(BaseModel):
     """
     Описание структуры ответа создания пользователя
     """
-    user: User
+    user: UserSchema
