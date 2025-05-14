@@ -2,7 +2,7 @@ from clients.api_client import APIClient
 from httpx import Response
 from typing import TypedDict
 from clients.files.files_client import File
-from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
+from clients.private_http_builder import AuthenticationUserSchema, get_private_http_client
 from clients.users.public_users_client import User
 
 # Добавили описание структуры курса
@@ -105,7 +105,7 @@ class CoursesClient(APIClient):
         response = self.create_course_api(request)
         return response.json()
 
-def get_courses_client(user: AuthenticationUserDict) -> CoursesClient:
+def get_courses_client(user: AuthenticationUserSchema) -> CoursesClient:
     """
     Функция создаёт экземпляр CoursesClient с уже настроенным HTTP-клиентом
     :return: Готовый к использованию CoursesClient
