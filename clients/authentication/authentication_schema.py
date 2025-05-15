@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field
 
 class TokenSchema(BaseModel):
     """
@@ -18,7 +18,7 @@ class LoginRequestSchema(BaseModel):
     """
     Описание структуры запроса на аутентификацию
     """
-    email: EmailStr
+    email: str
     password: str
 
 class RefreshRequestSchema(BaseModel):

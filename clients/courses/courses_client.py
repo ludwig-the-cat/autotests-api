@@ -17,7 +17,7 @@ class Course(TypedDict):
     description: str
     previewFile: File  # Вложенная структура файла
     estimatedTime: str
-    createdByUser: User # Вложенная структура пользователя
+    createdByUser: UserSchema # Вложенная структура пользователя
 
 class GetCoursesQueryDict(TypedDict):
     """
