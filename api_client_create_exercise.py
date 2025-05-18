@@ -42,7 +42,7 @@ create_course_response = courses_client.create_course(create_course_request)
 print(f'Created course data: {create_course_response}')
 
 # Создаем урок
-create_exercise_request = CreateExerciseRequestSchema(course_id=create_course_response.course.id,)
+create_exercise_request = CreateExerciseRequestSchema(course_id=create_course_response.course.id)
 # Отправляем запрос
 create_exercise_response = exercise_client.create_exercise(create_exercise_request)
 print(f'Created exercise data: {create_exercise_response}')
