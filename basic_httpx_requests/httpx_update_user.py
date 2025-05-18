@@ -9,7 +9,7 @@ UPDATE_USER_URL = f'http://localhost:8000/api/v1/users/'
 
 # Создаем пользователя
 create_user_payload = {
-    "email": tools.fakers.get_random_email(),
+    "email": tools.fakers.fake.email(),
     "password": "321321",
     "lastName": "lName",
     "firstName": "fName",
@@ -44,7 +44,7 @@ auth_header = {
 
 # формируем body для обновления пользователя
 update_payload = {
-    "email": tools.fakers.get_random_email(),
+    "email": tools.fakers.fake.email(),
     "lastName": "lName",
     "firstName": "fName",
     "middleName": "mName"
