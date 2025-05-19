@@ -21,7 +21,6 @@ class PublicUsersClient(APIClient):
 
     def create_user(self, request: CreateUserRequestSchema) -> CreateUserResponseSchema:
         response = self.create_user_api(request)
-        print(response.text)
         return CreateUserResponseSchema.model_validate_json(response.text)
 
 
