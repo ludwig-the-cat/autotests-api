@@ -9,18 +9,14 @@ from tools.fakers import fake
 
 @pytest.mark.users
 @pytest.mark.regression
-@pytest.mark.parametrize('email', [fake.email(domain='mail.ru'),
-                                    fake.email(domain='gmail.com'),
-                                   fake.email(domain='example.com')])
+@pytest.mark.parametrize('email', ['mail.ru', 'gmail.com','example.com'])
 def test_create_user(email: str, public_users_client: PublicUsersClient):
     # Формируем тело запроса на создание пользователя
-    request = CreateUserRequestSchema(email=email)
+    request = CreateUserRequestSchema(email=fake.email(domain=email))
     # Отправляем запрос на создание пользователя
     response = public_users_client.create_user_api(request)
     # Инициализируем модель ответа на основе полученного JSON в ответе
     # Также благодаря встроенной валидации в Pydantic дополнительно убеждаемся, что ответ корректный
-    print(response.text)
-    print(response)
     response_data = CreateUserResponseSchema.model_validate_json(response.text)
 
     # Проверяем статус-код ответа
